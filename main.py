@@ -1,6 +1,13 @@
 from fastapi import FastAPI
 import pandas as pd
 import uvicorn
+import numpy as np 
+
+from sklearn.utils.extmath           import randomized_svd
+from sklearn.metrics.pairwise        import cosine_similarity
+from sklearn.metrics.pairwise        import linear_kernel
+from sklearn.feature_extraction.text import TfidfVectorizer
+
 df = pd.read_csv("moviesmod.csv")
 app=FastAPI()
 
@@ -54,23 +61,30 @@ def get_director(nombre_director:str):
     Además, deberá devolver el nombre de cada película con la fecha de lanzamiento, retorno individual, costo y ganancia de la misma. En formato lista'''
     director_data = df[df['name_director'] == nombre_director]
     earn = director_data['revenue'].sum()
-    """movies = []
+    movies = []
     for i , row in director_data.iterrows():
-                title = row['title']
-                release = row['release_date']
-                retur = row['return']
-                budget = row['budget']
-                earn2 = row['revenue']
-                movies.append({'titulo': title, 'fecha_estreno': release, 'retorno':retur, 'ganancia generada:':earn2, 'coste de la pelicula:': budget})"""
-    return {'nombre del director': nombre_director, 'retorno total': earn}
+                title = df['title']
+                release = df['release_date']
+                retur = df['return']
+                budget = df['budget']
+                earn2 = df['revenue']
+                movies.append({'titulo': title, 'fecha_estreno': release, 'retorno':retur, 'ganancia generada:':earn2, 'coste de la pelicula:': budget})
+    return {'nombre del director': nombre_director, 'retorno total': earn, 'peliculas': movies}
 
-# ML
-"""
+
+muestra = df.head(6000) 
+
+tfidf = TfidfVectorizer(stop_words='english')
+muestra=muestra.fillna("")
+
+tdfid_matrix = tfidf.fit_transform(muestra['overview'])
+cosine_similarity = linear_kernel( tdfid_matrix, tdfid_matrix)
+
 @app.get('/recomendacion/{titulo}')
 def recomendacion(titulo:str):
-    '''Ingresas un nombre de pelicula y te recomienda las similares en una lista'''
-    return {'lista recomendada': respuesta}"""
-
-"""belongs_to_collection,budget,genres,id,original_language,overview,popularity,
-production_companies,production_countries,release_date,revenue,runtime,spoken_languages,
-status,tagline,title,vote_average,vote_count,release_year,return"""
+    idx = muestra[muestra['title'] == titulo].index[0]
+    sim_cosine = list(enumerate(cosine_similarity[idx])) 
+    sim_scores = sorted(sim_cosine, key=lambda x: x[1], reverse=True) 
+    sim_ind = [i for i, _ in sim_scores[1:6]] 
+    sim_mov = muestra['title'].iloc[sim_ind].values.tolist() 
+    return {'lista recomendada': sim_mov}
