@@ -11,5 +11,5 @@
 ## **Paso a paso:**
 ## **Links:**
 ## **Canales de contacto:**
-+ [Linkedin]([https://docs.google.com/spreadsheets/d/1QkHH5er-74Bpk122tJxy_0D49pJMIwKLurByOfmxzho/edit#gid=0](https://www.linkedin.com/in/enzo-montinaro-493664250/)): Enzo Montinaro
-+ Correo electrónico: em.montinaro@gmail.com
++ Linkedin:[Enzo Montinaro](https://www.linkedin.com/in/enzo-montinaro-493664250/)
++ Mail: em.montinaro@gmail.com
