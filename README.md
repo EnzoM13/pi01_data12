@@ -24,7 +24,7 @@ La herramienta utilizada fue: Scikit-Learn
 
 ## **Links:**
 - [Deploy de la API en Render](https://enzo-montinaro.onrender.com/)
-- [Video del funcionamiento](#)
+- [Video del funcionamiento]((https://www.youtube.com/watch?v=1XYnO1gXHhI))
 ## **Canales de contacto:**
 + Linkedin: [Enzo Montinaro](https://www.linkedin.com/in/enzo-montinaro-493664250/)
 + Mail: em.montinaro@gmail.com
