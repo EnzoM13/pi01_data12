@@ -28,15 +28,15 @@ def peliculas_duracion(pelicula:str):
     lenght =  movie['runtime']
     year = movie['release_year']
     '''Ingresas la pelicula, retornando la duracion y el año'''
-    return {'pelicula':pelicula, 'duracion':lenght, 'anio':year}
+    return {'pelicula':pelicula, 'duracion':int(lenght), 'anio':int(year)}
 
 @app.get('/franquicia/{franquicia}')
 def franquicia(franquicia:str):
     '''Se ingresa la franquicia, retornando la cantidad de peliculas, ganancia total y promedio'''
     franch = df[df['belongs_to_collection'] == franquicia]
     mov_q = franch['belongs_to_collection'].shape[0]
-    earn = franch['revenue'].sum()
-    mean = franch['revenue'].mean()
+    earn = franch['revenue'].astype(float).sum()
+    mean = franch['revenue'].astype(float).mean()
     return {'franquicia':franquicia, 'cantidad':mov_q, 'ganancia_total':earn, 'ganancia_promedio':mean}
 
 @app.get('/peliculas_pais/{pais}')
@@ -51,7 +51,7 @@ def productoras_exitosas(productora:str):
     '''Ingresas la productora, entregandote el revunue total y la cantidad de peliculas que realizo '''
     producer = df[df['production_companies'] == productora]
     earn = producer['revenue'].sum()
-    mov_q = producer['name_production'].shape[0]
+    mov_q = producer['production_companies'].shape[0]
     return {'productora':productora, 'revenue_total': earn,'cantidad':mov_q}
 
 
@@ -63,12 +63,12 @@ def get_director(nombre_director:str):
     earn = director_data['revenue'].sum()
     movies = []
     for i , row in director_data.iterrows():
-                title = df['title']
-                release = df['release_date']
-                retur = df['return']
-                budget = df['budget']
-                earn2 = df['revenue']
-                movies.append({'titulo': title, 'fecha_estreno': release, 'retorno':retur, 'ganancia generada:':earn2, 'coste de la pelicula:': budget})
+                title = director_data['title']
+                release = director_data['release_date']
+                retur = director_data['return']
+                budget = director_data['budget']
+                earn2 = director_data['revenue']
+    movies.append({'titulo': title, 'fecha_estreno': release, 'retorno':retur, 'ganancia generada:':earn2, 'coste de la pelicula:': budget})
     return {'nombre del director': nombre_director, 'retorno total': earn, 'peliculas': movies}
 
 
