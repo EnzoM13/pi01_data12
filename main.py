@@ -72,7 +72,7 @@ def get_director(nombre_director:str):
     return {'nombre del director': nombre_director, 'retorno total': earn, 'peliculas': movies}
 
 
-muestra = df.head(6000) 
+muestra = df.head(4000) 
 
 tfidf = TfidfVectorizer(stop_words='english')
 muestra=muestra.fillna("")
