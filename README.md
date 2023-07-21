@@ -9,6 +9,20 @@
 ## **Introducción:**
 Este proyecto consiste en crear una API que utiliza un modelo de recomendación de películas basado en Machine Learning. El objetivo es proporcionar recomendaciones personalizadas a los usuarios, ayudándoles a descubrir películas que se ajusten a sus preferencias. La API ofrece una interfaz intuitiva para que los usuarios envíen sus preferencias y reciban recomendaciones adaptadas a ellas. El proyecto busca mejorar la experiencia de los usuarios al ofrecerles una selección de películas acorde a sus gustos individuales.
 
+## **Herramientas Utilizadas**
++ Pandas
++ Matplotlib
++ Numpy
++ Seaborn
++ Wordcloud
++ NLTK
++ Uvicorn
++ Render
++ FastAPI
++ Python
++ AST
++ Scikit-Learn
+
 ## **Paso a paso:**
 ### 1. ETL
 Realizamos un proceso de ETL (Extracción, Transformación y Carga) en el que extrajimos datos de diferentes fuentes, los transformamos según las necesidades del proyecto y los cargamos en un destino final para su análisis y uso posterior. Las herramientas utilizadas fueron: Python, Pandas, AST
